@@ -40,7 +40,7 @@ let res="";
     }
 
     console.log("Total Marks:", total);
-    console.log("Average:", average);
+    console.log("Average:", average.toFixed(2));
     console.log("Grade:", grade);
     document.getElementById("result").innerHTML="Total marks="+total+"<br>"+"Average="+average+"<br>"
     +"grade="+grade+"<br>"+"Result="+res;

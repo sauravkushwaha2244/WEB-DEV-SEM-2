@@ -16,50 +16,152 @@
 
 <div class="container">
 
-<button id="addemp">Add Employee</button><br>
+<button id="addemp">Add Employee</button><br><br>
 <button id="disp">Display All</button>
 <button id="salaryFilter">Salary > 500000</button>
 <button id="total">Total Salary</button>
-<button id="average">Average Salary</button><br>
-<button id="count">Count by Department</button><br>
+<button id="average">Average Salary</button><br><br>
+<button id="count">Count by Department</button><br><br>
 
-<div id="add">
-    <p id="name1"></p>
-    <p id="empId1"></p>
-    <p id="salary1"></p>
-    <p id="dept1"></p>
-</div>
+<div id="add"></div>
 
 </div>
 
 <script>
 
-const namea = document.getElementById('name')
-const empId = document.getElementById('empId')
-const salary = document.getElementById('salary')
-const dept = document.getElementById('dept')
+const nameInput = document.getElementById('name')
+const empIdInput = document.getElementById('empId')
+const salaryInput = document.getElementById('salary')
+const deptInput = document.getElementById('dept')
 
-const name1 = document.getElementById('name1')
-const empId1 = document.getElementById('empId1')
-const salary1 = document.getElementById('salary1')
-const dept1 = document.getElementById('dept1')
+const addDiv = document.getElementById('add')
 
 const addButton = document.getElementById('addemp')
+const dispButton = document.getElementById('disp')
+const salaryFilterButton = document.getElementById('salaryFilter')
+const totalButton = document.getElementById('total')
+const averageButton = document.getElementById('average')
+const countButton = document.getElementById('count')
+
+let employees = []
 
 addButton.addEventListener('click', () => {
-
-    if (namea.value.trim() !== "") {
-
-        name1.textContent = "Name: " + namea.value
-        empId1.textContent = "Employee ID: " + empId.value
-        salary1.textContent = "Salary: " + salary.value
-        dept1.textContent = "Department: " + dept.value
-
+    if (nameInput.value.trim() !== "") {
+        const employee = {
+            name: nameInput.value,
+            empId: empIdInput.value,
+            salary: parseFloat(salaryInput.value),
+            dept: deptInput.value
+        }
+        employees.push(employee)
+        
+        nameInput.value = ""
+        empIdInput.value = ""
+        salaryInput.value = ""
+        deptInput.value = ""
+        
+        alert("Employee added successfully!")
     } 
     else {
-        alert("Please enter a name!")
+        alert("Please enter all details!")
     }
+})
 
+
+dispButton.addEventListener('click', () => {
+    addDiv.innerHTML = ""
+    
+    if (employees.length === 0) {
+        addDiv.innerHTML = "<p>No employees to display</p>"
+        return
+    }
+    
+    employees.forEach((emp, index) => {
+        const empDiv = document.createElement('div')
+        empDiv.style.border = "1px solid #ccc"
+        empDiv.style.padding = "10px"
+        empDiv.style.margin = "10px 0"
+        empDiv.innerHTML = `
+            <p><strong>Name:</strong> ${emp.name}</p>
+            <p><strong>Employee ID:</strong> ${emp.empId}</p>
+            <p><strong>Salary:</strong> ${emp.salary}</p>
+            <p><strong>Department:</strong> ${emp.dept}</p>
+        `
+        addDiv.appendChild(empDiv)
+    })
+})
+
+salaryFilterButton.addEventListener('click', () => {
+    addDiv.innerHTML = ""
+    
+    const filtered = employees.filter(emp => emp.salary > 500000)
+    
+    if (filtered.length === 0) {
+        addDiv.innerHTML = "<p>No employees with salary > 500000</p>"
+        return
+    }
+    
+    filtered.forEach((emp) => {
+        const empDiv = document.createElement('div')
+        empDiv.style.border = "1px solid #ccc"
+        empDiv.style.padding = "10px"
+        empDiv.style.margin = "10px 0"
+        empDiv.innerHTML = `
+            <p><strong>Name:</strong> ${emp.name}</p>
+            <p><strong>Employee ID:</strong> ${emp.empId}</p>
+            <p><strong>Salary:</strong> ${emp.salary}</p>
+            <p><strong>Department:</strong> ${emp.dept}</p>
+        `
+        addDiv.appendChild(empDiv)
+    })
+})
+
+totalButton.addEventListener('click', () => {
+    addDiv.innerHTML = ""
+    
+    const total = employees.reduce((sum, emp) => sum + emp.salary, 0)
+    
+    addDiv.innerHTML = `<p style="font-size: 18px; font-weight: bold;">Total Salary: ${total}</p>`
+})
+
+averageButton.addEventListener('click', () => {
+    addDiv.innerHTML = ""
+    
+    if (employees.length === 0) {
+        addDiv.innerHTML = "<p>No employees to calculate average</p>"
+        return
+    }
+    
+    const total = employees.reduce((sum, emp) => sum + emp.salary, 0)
+    const average = total / employees.length
+    
+    addDiv.innerHTML = `<p style="font-size: 18px; font-weight: bold;">Average Salary: ${average.toFixed(2)}</p>`
+})
+
+
+countButton.addEventListener('click', () => {
+    addDiv.innerHTML = ""
+    
+    if (employees.length === 0) {
+        addDiv.innerHTML = "<p>No employees to count</p>"
+        return
+    }
+    
+    const deptCount = {}
+    employees.forEach(emp => {
+        if (deptCount[emp.dept]) {
+            deptCount[emp.dept]++
+        } else {
+            deptCount[emp.dept] = 1
+        }
+    })
+    
+    let html = "<p style='font-weight: bold;'>Count by Department:</p>"
+    for (let dept in deptCount) {
+        html += `<p>${dept}: ${deptCount[dept]}</p>`
+    }
+    
+    addDiv.innerHTML = html
 })
 
 </script>

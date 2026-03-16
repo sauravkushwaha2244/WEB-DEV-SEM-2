@@ -1,50 +1,25 @@
-let employees = [];
+const namea=document.getElementById('name')
+const empId=document.getElementById('empId')
+const salary=document.getElementById('salary')
+const dept=document.getElementById('dept')
+const name1=document.getElementById('name1')
+const empId1=document.getElementById('empId1')
+const salary1=document.getElementById('salary1')
+const dept1=document.getElementById('dept1')
 
-function addEmployee() {
-    let name = document.getElementById("name").value;
-    let id = document.getElementById("empId").value;
-    let salary = Number(document.getElementById("salary").value);
+const add=document.getElementById('add')
 
-
-    employees.push({ name, id, salary });
-
-    // Clear the boxes for the next person
-    document.getElementById("name").value = "";
-    document.getElementById("empId").value = "";
-    document.getElementById("salary").value = "";
-
-    alert("Added!");
-}
-
-function displayEmployees() {
-    let text = "<h3>Employee List:</h3>";
-    
-    for (let i = 0; i < employees.length; i++) {
-        text += i + ". " + employees[i].name + " - $" + employees[i].salary + "<br>";
+const addButton=document.getElementById('addemp')
+addButton.addEventListener('click',() => {
+     if (namea.value.trim() !== "") {
+        name1.textContent = namea.value;
+    } else {
+        alert("Please enter a name!");
     }
-    
-    document.getElementById("output").innerHTML = text;
-}
+});
 
-function totalSalary() {
-    let total = 0;
-    for (let i = 0; i < employees.length; i++) {
-        total += employees[i].salary;
-    }
-    document.getElementById("output").innerHTML = "Total Salary = $" + total;
-}
 
-function averageSalary() {
-    if (employees.length === 0) {
-        document.getElementById("output").innerHTML = "Average = $0";
-        return;
-    }
 
-    let total = 0;
-    for (let i = 0; i < employees.length; i++) {
-        total += employees[i].salary;
-    }
-    
-    let avg = total / employees.length;
-    document.getElementById("output").innerHTML = "Average Salary = $" + avg.toFixed(2);
-}
+
+
+

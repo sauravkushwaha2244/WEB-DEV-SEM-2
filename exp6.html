@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exp 6</title>
+
+    <link rel="stylesheet" href="exp6.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="main-heading">This is a Javascript Model</h2>
+
+      <input type="text" id="text-input" />
+
+      <br />
+
+      <button id="change">Change Heading</button>
+      <button id="background">Change Background</button>
+      <button id="font">Increase Font Size</button>
+      <br />
+      <button id="hide">Show/Hide Paragraph</button>
+      <button id="reset">Reset</button>
+
+      <p id="paragraph">
+        This is a sample paragraph. JavaScript events can dynamically change
+        content.
+      </p>
+    </div>
+    <script>
+      const hed = document.getElementById("main-heading");
+      const btn = document.getElementById("change");
+      const inp = document.getElementById("text-input");
+      const color = document.getElementById("background");
+      const fon  = document.getElementById("font");
+      const hid  = document.getElementById("hide");
+      const res = document.getElementById("reset");
+
+
+      btn.addEventListener("click", () => {
+        if (inp.value.trim() !== "") {
+          hed.innerHTML = inp.value;
+        } else {
+          alert("Please enter a name!");
+        }
+      });
+      color.addEventListener("click", () => {
+  const r = (Math.random() * 256);
+  const g = (Math.random() * 256);
+  const b = (Math.random() * 256);
+
+  document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+});
+
+fon.addEventListener("click", () => {
+  let size = parseInt(window.getComputedStyle(hed).fontSize);
+  hed.style.fontSize = (size + 3) + "px";
+});
+const para = document.getElementById("paragraph")
+hid.addEventListener("click", () => {
+
+  if (para.style.display === "none") {
+    para.style.display = "block";
+  } 
+  else {
+    para.style.display = "none";
+  }
+
+});
+res.addEventListener("click", () => {
+
+  hed.innerHTML = "This is a Javascript Model";
+  inp.value = "";
+
+  document.body.style.backgroundColor = "";
+
+  hed.style.fontSize = "";
+
+  para.style.display = "block";
+
+});
+
+
+
+
+    </script>
+  </body>
+</html>

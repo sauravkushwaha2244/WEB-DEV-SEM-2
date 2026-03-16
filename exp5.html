@@ -2,30 +2,67 @@
 <html>
 <head>
 <title>Employee Management</title>
+<link rel="stylesheet" href="exp5.css">
 </head>
 
-<link rel="stylesheet" href="exp5.css">
-
 <body>
-<h2>Employee  salary Management system</h2>
+
+<h2>Employee Salary Management System</h2>
 
 <input type="text" id="name" placeholder="Employee Name"><br><br>
 <input type="text" id="empId" placeholder="Employee ID"><br><br>
 <input type="number" id="salary" placeholder="Salary"><br><br>
 <input type="text" id="dept" placeholder="Department"><br><br>
+
 <div class="container">
 
 <button id="addemp">Add Employee</button><br>
-<div> <p id="add">
+<button id="disp">Display All</button>
+<button id="salaryFilter">Salary > 500000</button>
+<button id="total">Total Salary</button>
+<button id="average">Average Salary</button><br>
+<button id="count">Count by Department</button><br>
+
+<div id="add">
     <p id="name1"></p>
     <p id="empId1"></p>
     <p id="salary1"></p>
     <p id="dept1"></p>
-    
-</p></div>
+</div>
 
+</div>
 
-<script src="exp5.js"></script>
+<script>
+
+const namea = document.getElementById('name')
+const empId = document.getElementById('empId')
+const salary = document.getElementById('salary')
+const dept = document.getElementById('dept')
+
+const name1 = document.getElementById('name1')
+const empId1 = document.getElementById('empId1')
+const salary1 = document.getElementById('salary1')
+const dept1 = document.getElementById('dept1')
+
+const addButton = document.getElementById('addemp')
+
+addButton.addEventListener('click', () => {
+
+    if (namea.value.trim() !== "") {
+
+        name1.textContent = "Name: " + namea.value
+        empId1.textContent = "Employee ID: " + empId.value
+        salary1.textContent = "Salary: " + salary.value
+        dept1.textContent = "Department: " + dept.value
+
+    } 
+    else {
+        alert("Please enter a name!")
+    }
+
+})
+
+</script>
 
 </body>
 </html>

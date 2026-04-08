@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Countdown Timer</title>
+    <style>
+        body {
+        
+            text-align: center;
+           
+        }
+
+       
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px;
+           
+            margin-top: 10px;
+            
+            background-color: red;
+                     
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 24px;
+            color:yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Countdown Timer</h1>
+
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <br><br>
+    <button onclick="startCountdown()">Start Countdown</button>
+
+    <div id="output"></div>
+
+    <script>
+        function startCountdown() {
+            let num = parseInt(document.getElementById("numberInput").value);
+            let outputDiv = document.getElementById("output");
+
+            if (isNaN(num) || num <= 0) {
+                outputDiv.innerHTML = "Please enter a valid number!";
+                return;
+            }
+
+            outputDiv.innerHTML = "";
+
+            let i = num;
+
+            let interval = setInterval(() => {
+                outputDiv.innerHTML += i + "<br>";
+                i--;
+
+                if (i === 0) {
+                    outputDiv.innerHTML += "Done!";
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>

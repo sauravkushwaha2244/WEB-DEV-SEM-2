@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: aqua;
+ 
+}
+
+.container {
+  text-align: center;
+  margin-top: 100px;
+  background: white;
+  padding: 40px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.counter {
+  font-size: 50px;
+  margin: 20px 0;
+  color: #333;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+ 
+  font-size: 14px;
+color: #764ba2;
+}

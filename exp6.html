@@ -27,15 +27,15 @@
         content.
       </p>
     </div>
+    <h1>saurav kumar</h1>
     <script>
       const hed = document.getElementById("main-heading");
       const btn = document.getElementById("change");
       const inp = document.getElementById("text-input");
       const color = document.getElementById("background");
-      const fon  = document.getElementById("font");
-      const hid  = document.getElementById("hide");
+      const fon = document.getElementById("font");
+      const hid = document.getElementById("hide");
       const res = document.getElementById("reset");
-
 
       btn.addEventListener("click", () => {
         if (inp.value.trim() !== "") {
@@ -45,44 +45,35 @@
         }
       });
       color.addEventListener("click", () => {
-  const r = (Math.random() * 256);
-  const g = (Math.random() * 256);
-  const b = (Math.random() * 256);
+        const r = Math.random() * 256;
+        const g = Math.random() * 256;
+        const b = Math.random() * 256;
 
-  document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-});
+        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+      });
 
-fon.addEventListener("click", () => {
-  let size = parseInt(window.getComputedStyle(hed).fontSize);
-  hed.style.fontSize = (size + 3) + "px"
-});
-const para = document.getElementById("paragraph")
-hid.addEventListener("click", () => {
+      fon.addEventListener("click", () => {
+        let size = parseInt(window.getComputedStyle(hed).fontSize);
+        hed.style.fontSize = size + 3 + "px";
+      });
+      const para = document.getElementById("paragraph");
+      hid.addEventListener("click", () => {
+        if (para.style.display === "none") {
+          para.style.display = "block";
+        } else {
+          para.style.display = "none";
+        }
+      });
+      res.addEventListener("click", () => {
+        hed.innerHTML = "This is a Javascript Model";
+        inp.value = "";
 
-  if (para.style.display === "none") {
-    para.style.display = "block";
-  } 
-  else {
-    para.style.display = "none";
-  }
+        document.body.style.backgroundColor = "";
 
-});
-res.addEventListener("click", () => {
+        hed.style.fontSize = "";
 
-  hed.innerHTML = "This is a Javascript Model";
-  inp.value = "";
-
-  document.body.style.backgroundColor = "";
-
-  hed.style.fontSize = "";
-
-  para.style.display = "block";
-
-});
-
-
-
-
+        para.style.display = "block";
+      });
     </script>
   </body>
 </html>

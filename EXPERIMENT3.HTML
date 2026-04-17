@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitLife</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- ✅ Header -->
+    <header class="bg-gray-700 text-white">
+      <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+        <h1 class="text-lg font-bold">FitLife</h1>
+        <nav class="space-x-4 text-sm">
+          <a href="#">Home</a>
+          <a href="#">Programs</a>
+          <a href="#">Trainers</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ✅ Hero Section -->
+    <section
+      class="bg-gradient-to-r from-blue-300 to-purple-400 text-center text-white py-16"
+    >
+      <h2 class="text-2xl md:text-4xl font-bold">Transform Your Body & Mind</h2>
+      <p class="mt-2 text-sm md:text-lg">
+        Join FitLife today and achieve your fitness goals with expert trainers.
+      </p>
+      <button class="mt-4 bg-white text-gray-700 px-4 py-2 rounded">
+        Join Now
+      </button>
+    </section>
+
+    <!-- ✅ Programs Section -->
+    <section class="max-w-6xl mx-auto py-10 px-4">
+      <h2 class="text-center text-xl font-bold mb-6">Our Programs</h2>
+
+      <!-- Responsive Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white p-4 rounded shadow text-center">
+          <h3 class="text-red-500 font-semibold">Weight Training</h3>
+          <p class="text-sm mt-2">
+            Build strength and muscle with guided weight training programs.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white p-4 rounded shadow text-center">
+          <h3 class="text-red-500 font-semibold">Yoga Classes</h3>
+          <p class="text-sm mt-2">
+            Improve flexibility and mental wellness through yoga sessions.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white p-4 rounded shadow text-center">
+          <h3 class="text-red-500 font-semibold">Diet Plans</h3>
+          <p class="text-sm mt-2">
+            Personalized diet plans to complement your fitness routine.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Footer -->
+    <footer
+      class="bg-gradient-to-r from-blue-300 to-purple-400 text-white text-center py-4"
+    >
+      <p>© 2026 FitLife | All Rights Reserved</p>
+      <p class="text-sm">Contact: info@fitlife.com</p>
+    </footer>
+  </body>
+</html>

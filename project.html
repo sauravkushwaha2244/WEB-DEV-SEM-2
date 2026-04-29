@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIFA game</title>
+    <link rel="stylesheet" href="project.css" />
+  </head>
+  <style>
+    .video-class{
+       
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+
+    }
+  </style>
+
+  <body>
+    <div class="video-class">
+    <video autoplay muted class="bg-video">
+      <source src="/fifas.mp4.mp4">
+    </video>
+    </div>
+    <div class="main">
+      <a href="#">Ticket</a>
+      <a href="#">Fans</a>
+      <a href="#">Bulletians</a>
+      <a href="#">Fifa collect</a>
+    </div>
+    <div class="navbar">
+      <div class="hamburger" id="hamburger">☰</div>
+
+      <div class="logo">FIFA</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#tournament">TOURNAMENTS</a>
+        <a href="#">MATCH CENTRE</a>
+        <a href="#">NEWS</a>
+        <a href="#ranking">RANKINGS</a>
+        <a href="#">WATCH ON FIFA+</a>
+        <a href="#">PLAY</a>
+        <a href="#">SHOP</a>
+        <a href="#">INSIDE FIFA</a>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu"></div>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h4>FIFA World Cup 2026™</h4>
+        <h1>Lopetegui eyes redemption with Qatar</h1>
+        <p>
+          Qatar's Julen Lopetegui is set for his first FIFA World Cup as a head
+          coach, with 2026 offering a long‑awaited opportunity on the big stage.
+        </p>
+        <a class="btn" href="#">Read more</a>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://media.licdn.com/dms/image/v2/D4E12AQEUaTCN38qXFQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1689687351361?e=2147483647&v=beta&t=Vs2W7UF6Rjo22EVf-SqYs1LapAUS-6B3RMusDyGJoEs"
+          alt="Coach"
+        />
+      </div>
+    </section>
+
+    <section class="cards" id="tournament">
+      <div class="head"><h1>Upcoming tournaments & events</h1></div>
+      <div class="cards1">
+        <div class="card">
+          <h5>FIFA World Cup 2026™</h5>
+        
+          <img class= "erling" src="https://t4.ftcdn.net/jpg/16/23/70/99/360_F_1623709960_76EjISYQ7pAFMOs71CNd1YglOO7QO4TB.jpg" alt="Erling Haland">
+        </div>
+
+        <div class="card">
+          <h5>FIFA Women's World Cup™</h5>
+           <img class= "erling" src="https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_xl_2x/f_auto/primary/jts4ujb2lbyael0pugzv" alt="Erling Haland">
+        </div>
+
+        <div class="card">
+          <h5>Inside FIFA</h5>
+        <img class="erling" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc6jImYAKPzQs8XvAE2nxKF2a42fwfk_mX6A&s" alt="erling">
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenu.innerHTML = navLinks.innerHTML;
+
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("show");
+      });
+    </script>
+    <section class="ranking" id="ranking">
+      <h2 class="ranking-title">World Football Team Rankings</h2>
+
+      <div class="ranking-table">
+        <div class="rank-row rank-head">
+          <span>Rank</span>
+          <span>Team</span>
+          <span>Points</span>
+        </div>
+
+        <div class="rank-row">
+          <span>1</span>
+          <span class="team">
+            <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" />
+            Argentina
+          </span>
+          <span>1867</span>
+        </div>
+
+        <div class="rank-row">
+          <span>2</span>
+          <span class="team">
+            <img src="https://flagcdn.com/w40/fr.png" alt="France" />
+            France
+          </span>
+          <span>1859</span>
+        </div>
+
+        <div class="rank-row">
+          <span>3</span>
+          <span class="team">
+            <img src="https://flagcdn.com/w40/br.png" alt="Brazil" />
+            Brazil
+          </span>
+          <span>1841</span>
+        </div>
+
+        <div class="rank-row">
+          <span>4</span>
+          <span class="team">
+            <img src="https://flagcdn.com/w40/gb-eng.png" alt="England" />
+            England
+          </span>
+          <span>1794</span>
+        </div>
+
+
+        <div class="rank-row">
+          <span>5</span>
+          <span class="team">
+            <img src="https://flagcdn.com/w40/be.png" alt="Belgium" />
+            Belgium
+          </span>
+          <span>1788</span>
+        </div>
+      </div>
+
+<video autoplay muted loop playsinline class="bg-video">
+  <source src="" type="video/mp4">
+</video>
+
+
+<div class="bg-overlay"></div>
+    </section>
+  </body>
+</html>

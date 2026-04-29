@@ -1,0 +1,86 @@
+.student-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  max-width: 300px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.student-name {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.grade-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+}
+
+.grade-Aplus { background-color: #4CAF50; }
+.grade-A { background-color: #8BC34A; }
+.grade-Bplus { background-color: #FFC107; }
+.grade-B { background-color: #FF9800; }
+.grade-C { background-color: #F44336; }
+
+.card-body {
+  margin-bottom: 12px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.marks-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.marks-value {
+  font-weight: bold;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4CAF50;
+  transition: width 0.3s;
+}
+
+.card-footer {
+  text-align: center;
+}
+
+.performance-indicator .indicator {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.excellent { background-color: #4CAF50; color: white; }
+.good { background-color: #8BC34A; color: white; }
+.satisfactory { background-color: #FFC107; color: black; }

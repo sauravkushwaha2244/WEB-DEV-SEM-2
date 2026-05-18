@@ -1,21 +1,1386 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>functional components</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
-<body>
-    <div id="root"></div>
-    <script type="text/babel">
-        function Welcome() {
-            return <h1>Welcome to the functional components</h1>;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Clone</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --navy: #131921;
+        --navy-2: #232f3e;
+        --accent: #febd69;
+        --accent-2: #f3a847;
+        --bg: #e3e6e6;
+        --text: #111;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .topbar {
+        background: var(--navy);
+        color: #fff;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 16px;
+      }
+
+      .brand {
+        min-width: 115px;
+        line-height: 1;
+        font-weight: 700;
+        font-size: 26px;
+        letter-spacing: -1px;
+      }
+
+      .brand small {
+        display: block;
+        font-size: 12px;
+        color: #ffd814;
+        margin-top: 2px;
+        font-weight: 600;
+      }
+
+      .deliver {
+        min-width: 140px;
+        font-size: 12px;
+        line-height: 1.2;
+        padding: 6px 8px;
+      }
+
+      .deliver strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .search {
+        flex: 1;
+        display: flex;
+        min-width: 240px;
+        height: 40px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .search select {
+        width: 64px;
+        border: none;
+        background: #e6e6e6;
+        padding: 0 8px;
+        outline: none;
+      }
+
+      .search input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 0 12px;
+        font-size: 14px;
+      }
+
+      .search button {
+        width: 48px;
+        border: none;
+        background: var(--accent);
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+      }
+
+      .action {
+        font-size: 12px;
+        line-height: 1.15;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .action strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .cart {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        left: 13px;
+        background: var(--accent);
+        color: var(--navy);
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+      }
+
+      .navbar {
+        height: 44px;
+        background: var(--navy-2);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 16px;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+
+      .navbar span {
+        cursor: pointer;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 350px;
+        background: linear-gradient(
+          90deg,
+          #ffd75a 0%,
+          #ffd75a 62%,
+          #ffcc42 100%
+        );
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        right: -90px;
+        top: 55px;
+        width: 560px;
+        height: 280px;
+        background: linear-gradient(135deg, #ffb000, #ff8f00);
+        border-radius: 80px;
+        transform: rotate(18deg);
+        opacity: 0.95;
+      }
+
+      .hero-inner {
+        position: relative;
+        max-width: 1380px;
+        margin: 0 auto;
+        min-height: 350px;
+        padding: 28px 20px 18px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .hero-content {
+        max-width: 460px;
+        margin-left: 310px;
+        z-index: 1;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #ff9f2e;
+        color: #5a2b00;
+        padding: 6px 16px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        position: relative;
+      }
+
+      .tag::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -18px;
+        width: 0;
+        height: 0;
+        border-top: 17px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 18px solid #ff9f2e;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+        line-height: 1.25;
+        margin-bottom: 12px;
+      }
+
+      .hero p {
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      .hero .amazon-pay {
+        margin-top: 18px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+
+      .hero .amazon-pay span {
+        display: inline-block;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #2f3e5c;
+        color: #fff;
+        font-size: 12px;
+        line-height: 42px;
+        text-align: center;
+        margin-left: 4px;
+        vertical-align: middle;
+      }
+
+      .hero .fineprint {
+        margin-top: 14px;
+        font-size: 12px;
+        color: #3b3b3b;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border: none;
+        background: transparent;
+        font-size: 36px;
+        color: #1d1d1d;
+        cursor: pointer;
+        z-index: 2;
+      }
+
+      .arrow.left {
+        left: 16px;
+      }
+
+      .arrow.right {
+        right: 16px;
+      }
+
+      .hero-visual {
+        position: absolute;
+        right: 250px;
+        top: 74px;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+      }
+
+      .card-art {
+        position: relative;
+        width: 190px;
+        height: 122px;
+        border-radius: 14px;
+        background: linear-gradient(160deg, #202020, #3a3a3a);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+        transform: rotate(-8deg);
+      }
+
+      .card-art::before {
+        content: "amazon pay";
+        position: absolute;
+        left: 14px;
+        top: 12px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .card-art::after {
+        content: "LIFETIME FREE";
+        position: absolute;
+        left: 14px;
+        bottom: 10px;
+        background: #fff4c2;
+        padding: 3px 8px;
+        border-radius: 3px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #1d1d1d;
+      }
+
+      .cashback {
+        position: absolute;
+        right: -34px;
+        top: -8px;
+        font-size: 92px;
+        font-weight: 900;
+        color: #111;
+        line-height: 1;
+      }
+
+      .cashback small {
+        display: block;
+        font-size: 30px;
+        margin-left: 72px;
+        margin-top: -8px;
+      }
+
+      main {
+        max-width: 1380px;
+        margin: -76px auto 0;
+        padding: 0 20px 30px;
+        position: relative;
+        z-index: 3;
+      }
+
+      .cards-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 18px;
+        min-height: 315px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      .card h2 {
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product {
+        font-size: 13px;
+      }
+
+      .img {
+        height: 120px;
+        border-radius: 2px;
+        background: linear-gradient(135deg, #e7eef6, #d7dde5);
+        border: 1px solid #d7d7d7;
+        margin-bottom: 8px;
+        display: grid;
+        place-items: center;
+        font-size: 52px;
+      }
+
+      .product p {
+        color: #111;
+        line-height: 1.2;
+        margin-bottom: 3px;
+      }
+
+      .product small {
+        color: #565959;
+      }
+
+      .section-gap {
+        height: 18px;
+      }
+
+      .wide-banner {
+        background: #fff;
+        padding: 18px;
+        margin-top: 18px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      .wide-banner h2 {
+        font-size: 22px;
+        margin-bottom: 14px;
+      }
+
+      .wide-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .strip-item {
+        background: #f7f7f7;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .strip-item .img {
+        height: 130px;
+      }
+
+      footer {
+        margin-top: 26px;
+        background: #131921;
+        color: #fff;
+        padding: 24px 16px;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      @media (max-width: 1100px) {
+        .hero-content {
+          margin-left: 0;
+          max-width: 520px;
         }
-        const root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(<Welcome />);
+
+        .hero-visual {
+          right: 40px;
+        }
+
+        .cards-row {
+          grid-template-columns: 1fr;
+        }
+
+        .wide-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .topbar {
+          height: auto;
+          flex-wrap: wrap;
+          padding: 12px 12px 10px;
+        }
+
+        .brand,
+        .deliver,
+        .top-actions {
+          width: 100%;
+        }
+
+        .top-actions {
+          justify-content: space-between;
+        }
+
+        .hero {
+          min-height: 420px;
+        }
+
+        .hero-inner {
+          padding-top: 20px;
+        }
+
+        .hero-visual {
+          position: static;
+          margin: 18px auto 0;
+        }
+
+        .hero-content {
+          max-width: 100%;
+        }
+
+        .wide-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          amazon.in
+          <small>prime</small>
+        </div>
+
+        <div class="deliver">
+          Deliver to saurav
+          <strong>Ghaziabad 201009</strong>
+        </div>
+
+        <div class="search">
+          <select aria-label="Search category">
+            <option>All</option>
+          </select>
+          <input type="text" placeholder="Search Amazon.in" />
+          <button aria-label="Search">🔍</button>
+        </div>
+
+        <div class="top-actions">
+          <div class="action">
+            EN
+            <strong>🇮🇳</strong>
+          </div>
+          <div class="action">
+            Hello, saurav
+            <strong>Account &amp; Lists</strong>
+          </div>
+          <div class="action">
+            Returns
+            <strong>&amp; Orders</strong>
+          </div>
+          <div class="cart">
+            🛒 Cart
+            <span class="cart-badge" id="cartCount">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar">
+        <span>☰ All</span>
+        <span>Rufus</span>
+        <span>Fresh</span>
+        <span>Bestsellers</span>
+        <span>Mobiles</span>
+        <span>MX Player</span>
+        <span>Sell</span>
+        <span>Amazon Pay</span>
+        <span>Gift Cards</span>
+        <span>Gift Ideas</span>
+        <span>Buy Again</span>
+        <span>AmazonBasics</span>
+        <span>Prime</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <button class="arrow left" aria-label="Previous">‹</button>
+      <button class="arrow right" aria-label="Next">›</button>
+
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="tag">Just for Prime</div>
+          <h1>Lifetime free credit card</h1>
+          <p>Apply now &amp; get welcome rewards worth ₹2,500*</p>
+          <div class="amazon-pay">amazon <span>pay</span></div>
+          <div class="fineprint">*T&amp;C apply</div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="cashback">5<small>% cashback</small></div>
+          <div class="card-art"></div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="cards-row">
+        <article class="card">
+          <h2>Pick up where you left off</h2>
+          <div class="product-grid">
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>BenQ GW2490TC</p>
+              <small>24" monitor</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>BenQ GW2490T</p>
+              <small>24" monitor</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>MSI PRO MP273W</p>
+              <small>27" display</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>Dell S2425HS</p>
+              <small>24" monitor</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Continue shopping deals</h2>
+          <div class="product-grid">
+            <div class="product">
+              <div class="img">📱</div>
+              <p>Tablet cover</p>
+              <small>Accessories</small>
+            </div>
+            <div class="product">
+              <div class="img">👖</div>
+              <p>Men's joggers</p>
+              <small>Fashion</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>Monitor deals</p>
+              <small>Today only</small>
+            </div>
+            <div class="product">
+              <div class="img">👟</div>
+              <p>Running shoes</p>
+              <small>Up to 40% off</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Keep shopping for</h2>
+          <div class="product-grid">
+            <div class="product">
+              <div class="img">👔</div>
+              <p>Men's T-shirts</p>
+              <small>1 viewed</small>
+            </div>
+            <div class="product">
+              <div class="img">🧳</div>
+              <p>Suitcases &amp; trolley bags</p>
+              <small>5 viewed</small>
+            </div>
+            <div class="product">
+              <div class="img">📱</div>
+              <p>Phone cases</p>
+              <small>3 viewed</small>
+            </div>
+            <div class="product">
+              <div class="img">🎧</div>
+              <p>Audio headphones</p>
+              <small>12 viewed</small>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <div class="section-gap"></div>
+
+      <section class="wide-banner">
+        <h2>More deals for you</h2>
+        <div class="wide-strip">
+          <div class="strip-item">
+            <div class="img">⌚</div>
+            <p>Smart watches</p>
+          </div>
+          <div class="strip-item">
+            <div class="img">💻</div>
+            <p>Laptops</p>
+          </div>
+          <div class="strip-item">
+            <div class="img">🔊</div>
+            <p>Speakers</p>
+          </div>
+          <div class="strip-item">
+            <div class="img">📷</div>
+            <p>Cameras</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 Amazon Clone. All rights reserved.</footer>
+
+    <script>
+      let cart = 0;
+      const cartCount = document.getElementById("cartCount");
+
+      document.querySelector(".cart").addEventListener("click", () => {
+        cart += 1;
+        cartCount.textContent = cart;
+      });
     </script>
-</body>
+  </body>
+</html>
+```<!-- filepath: c:\Users\SAURAV KUSHWAHA\OneDrive\Desktop\WEB-DEV-SEM-2\demo1.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Clone</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --navy: #131921;
+        --navy-2: #232f3e;
+        --accent: #febd69;
+        --accent-2: #f3a847;
+        --bg: #e3e6e6;
+        --text: #111;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .topbar {
+        background: var(--navy);
+        color: #fff;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 16px;
+      }
+
+      .brand {
+        min-width: 115px;
+        line-height: 1;
+        font-weight: 700;
+        font-size: 26px;
+        letter-spacing: -1px;
+      }
+
+      .brand small {
+        display: block;
+        font-size: 12px;
+        color: #ffd814;
+        margin-top: 2px;
+        font-weight: 600;
+      }
+
+      .deliver {
+        min-width: 140px;
+        font-size: 12px;
+        line-height: 1.2;
+        padding: 6px 8px;
+      }
+
+      .deliver strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .search {
+        flex: 1;
+        display: flex;
+        min-width: 240px;
+        height: 40px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .search select {
+        width: 64px;
+        border: none;
+        background: #e6e6e6;
+        padding: 0 8px;
+        outline: none;
+      }
+
+      .search input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 0 12px;
+        font-size: 14px;
+      }
+
+      .search button {
+        width: 48px;
+        border: none;
+        background: var(--accent);
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: auto;
+      }
+
+      .action {
+        font-size: 12px;
+        line-height: 1.15;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .action strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .cart {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        left: 13px;
+        background: var(--accent);
+        color: var(--navy);
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+      }
+
+      .navbar {
+        height: 44px;
+        background: var(--navy-2);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 16px;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+
+      .navbar span {
+        cursor: pointer;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 350px;
+        background: linear-gradient(
+          90deg,
+          #ffd75a 0%,
+          #ffd75a 62%,
+          #ffcc42 100%
+        );
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        right: -90px;
+        top: 55px;
+        width: 560px;
+        height: 280px;
+        background: linear-gradient(135deg, #ffb000, #ff8f00);
+        border-radius: 80px;
+        transform: rotate(18deg);
+        opacity: 0.95;
+      }
+
+      .hero-inner {
+        position: relative;
+        max-width: 1380px;
+        margin: 0 auto;
+        min-height: 350px;
+        padding: 28px 20px 18px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .hero-content {
+        max-width: 460px;
+        margin-left: 310px;
+        z-index: 1;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #ff9f2e;
+        color: #5a2b00;
+        padding: 6px 16px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        position: relative;
+      }
+
+      .tag::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -18px;
+        width: 0;
+        height: 0;
+        border-top: 17px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 18px solid #ff9f2e;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+        line-height: 1.25;
+        margin-bottom: 12px;
+      }
+
+      .hero p {
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      .hero .amazon-pay {
+        margin-top: 18px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+
+      .hero .amazon-pay span {
+        display: inline-block;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #2f3e5c;
+        color: #fff;
+        font-size: 12px;
+        line-height: 42px;
+        text-align: center;
+        margin-left: 4px;
+        vertical-align: middle;
+      }
+
+      .hero .fineprint {
+        margin-top: 14px;
+        font-size: 12px;
+        color: #3b3b3b;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border: none;
+        background: transparent;
+        font-size: 36px;
+        color: #1d1d1d;
+        cursor: pointer;
+        z-index: 2;
+      }
+
+      .arrow.left {
+        left: 16px;
+      }
+
+      .arrow.right {
+        right: 16px;
+      }
+
+      .hero-visual {
+        position: absolute;
+        right: 250px;
+        top: 74px;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+      }
+
+      .card-art {
+        position: relative;
+        width: 190px;
+        height: 122px;
+        border-radius: 14px;
+        background: linear-gradient(160deg, #202020, #3a3a3a);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+        transform: rotate(-8deg);
+      }
+
+      .card-art::before {
+        content: "amazon pay";
+        position: absolute;
+        left: 14px;
+        top: 12px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .card-art::after {
+        content: "LIFETIME FREE";
+        position: absolute;
+        left: 14px;
+        bottom: 10px;
+        background: #fff4c2;
+        padding: 3px 8px;
+        border-radius: 3px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #1d1d1d;
+      }
+
+      .cashback {
+        position: absolute;
+        right: -34px;
+        top: -8px;
+        font-size: 92px;
+        font-weight: 900;
+        color: #111;
+        line-height: 1;
+      }
+
+      .cashback small {
+        display: block;
+        font-size: 30px;
+        margin-left: 72px;
+        margin-top: -8px;
+      }
+
+      main {
+        max-width: 1380px;
+        margin: -76px auto 0;
+        padding: 0 20px 30px;
+        position: relative;
+        z-index: 3;
+      }
+
+      .cards-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 18px;
+        min-height: 315px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      .card h2 {
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product {
+        font-size: 13px;
+      }
+
+      .img {
+        height: 120px;
+        border-radius: 2px;
+        background: linear-gradient(135deg, #e7eef6, #d7dde5);
+        border: 1px solid #d7d7d7;
+        margin-bottom: 8px;
+        display: grid;
+        place-items: center;
+        font-size: 52px;
+      }
+
+      .product p {
+        color: #111;
+        line-height: 1.2;
+        margin-bottom: 3px;
+      }
+
+      .product small {
+        color: #565959;
+      }
+
+      .section-gap {
+        height: 18px;
+      }
+
+      .wide-banner {
+        background: #fff;
+        padding: 18px;
+        margin-top: 18px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      .wide-banner h2 {
+        font-size: 22px;
+        margin-bottom: 14px;
+      }
+
+      .wide-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .strip-item {
+        background: #f7f7f7;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .strip-item .img {
+        height: 130px;
+      }
+
+      footer {
+        margin-top: 26px;
+        background: #131921;
+        color: #fff;
+        padding: 24px 16px;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      @media (max-width: 1100px) {
+        .hero-content {
+          margin-left: 0;
+          max-width: 520px;
+        }
+
+        .hero-visual {
+          right: 40px;
+        }
+
+        .cards-row {
+          grid-template-columns: 1fr;
+        }
+
+        .wide-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .topbar {
+          height: auto;
+          flex-wrap: wrap;
+          padding: 12px 12px 10px;
+        }
+
+        .brand,
+        .deliver,
+        .top-actions {
+          width: 100%;
+        }
+
+        .top-actions {
+          justify-content: space-between;
+        }
+
+        .hero {
+          min-height: 420px;
+        }
+
+        .hero-inner {
+          padding-top: 20px;
+        }
+
+        .hero-visual {
+          position: static;
+          margin: 18px auto 0;
+        }
+
+        .hero-content {
+          max-width: 100%;
+        }
+
+        .wide-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          amazon.in
+          <small>prime</small>
+        </div>
+
+        <div class="deliver">
+          Deliver to saurav
+          <strong>Ghaziabad 201009</strong>
+        </div>
+
+        <div class="search">
+          <select aria-label="Search category">
+            <option>All</option>
+          </select>
+          <input type="text" placeholder="Search Amazon.in" />
+          <button aria-label="Search">🔍</button>
+        </div>
+
+        <div class="top-actions">
+          <div class="action">
+            EN
+            <strong>🇮🇳</strong>
+          </div>
+          <div class="action">
+            Hello, saurav
+            <strong>Account &amp; Lists</strong>
+          </div>
+          <div class="action">
+            Returns
+            <strong>&amp; Orders</strong>
+          </div>
+          <div class="cart">
+            🛒 Cart
+            <span class="cart-badge" id="cartCount">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar">
+        <span>☰ All</span>
+        <span>Rufus</span>
+        <span>Fresh</span>
+        <span>Bestsellers</span>
+        <span>Mobiles</span>
+        <span>MX Player</span>
+        <span>Sell</span>
+        <span>Amazon Pay</span>
+        <span>Gift Cards</span>
+        <span>Gift Ideas</span>
+        <span>Buy Again</span>
+        <span>AmazonBasics</span>
+        <span>Prime</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <button class="arrow left" aria-label="Previous">‹</button>
+      <button class="arrow right" aria-label="Next">›</button>
+
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="tag">Just for Prime</div>
+          <h1>Lifetime free credit card</h1>
+          <p>Apply now &amp; get welcome rewards worth ₹2,500*</p>
+          <div class="amazon-pay">amazon <span>pay</span></div>
+          <div class="fineprint">*T&amp;C apply</div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="cashback">5<small>% cashback</small></div>
+          <div class="card-art"></div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="cards-row">
+        <article class="card">
+          <h2>Pick up where you left off</h2>
+          <div class="product-grid">
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>BenQ GW2490TC</p>
+              <small>24" monitor</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>BenQ GW2490T</p>
+              <small>24" monitor</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>MSI PRO MP273W</p>
+              <small>27" display</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>Dell S2425HS</p>
+              <small>24" monitor</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Continue shopping deals</h2>
+          <div class="product-grid">
+            <div class="product">
+              <div class="img">📱</div>
+              <p>Tablet cover</p>
+              <small>Accessories</small>
+            </div>
+            <div class="product">
+              <div class="img">👖</div>
+              <p>Men's joggers</p>
+              <small>Fashion</small>
+            </div>
+            <div class="product">
+              <div class="img">🖥️</div>
+              <p>Monitor deals</p>
+              <small>Today only</small>
+            </div>
+            <div class="product">
+              <div class="img">👟</div>
+              <p>Running shoes</p>
+              <small>Up to 40% off</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Keep shopping for</h2>
+          <div class="product-grid">
+            <div class="product">
+              <div class="img">👔</div>
+              <p>Men's T-shirts</p>
+              <small>1 viewed</small>
+            </div>
+            <div class="product">
+              <div class="img">🧳</div>
+              <p>Suitcases &amp; trolley bags</p>
+              <small>5 viewed</small>
+            </div>
+            <div class="product">
+              <div class="img">📱</div>
+              <p>Phone cases</p>
+              <small>3 viewed</small>
+            </div>
+            <div class="product">
+              <div class="img">🎧</div>
+              <p>Audio headphones</p>
+              <small>12 viewed</small>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <div class="section-gap"></div>
+
+      <section class="wide-banner">
+        <h2>More deals for you</h2>
+        <div class="wide-strip">
+          <div class="strip-item">
+            <div class="img">⌚</div>
+            <p>Smart watches</p>
+          </div>
+          <div class="strip-item">
+            <div class="img">💻</div>
+            <p>Laptops</p>
+          </div>
+          <div class="strip-item">
+            <div class="img">🔊</div>
+            <p>Speakers</p>
+          </div>
+          <div class="strip-item">
+            <div class="img">📷</div>
+            <p>Cameras</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 Amazon Clone. All rights reserved.</footer>
+
+    <script>
+      document.querySelector(".cart").addEventListener("click", () => {
+        cart += 1;
+        cartCount.textContent = cart;
+      });
+    </script>
+  </body>
 </html>

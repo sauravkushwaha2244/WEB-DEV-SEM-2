@@ -2,14 +2,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: aqua;
- 
+  background-color: #00ffff;
+
 }
 
 .container {
   text-align: center;
   margin-top: 100px;
-  background: white;//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  background: white;
   padding: 40px;
   width: 300px;
   margin-left: auto;
@@ -33,7 +33,7 @@ button {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
- 
+
   font-size: 14px;
-color: #764ba2;
+  color: #764ba2;
 }

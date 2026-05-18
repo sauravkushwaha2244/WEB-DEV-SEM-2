@@ -1,42 +1,35 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const savedUsers = JSON.parse(localStorage.getItem("users"));
-    if (savedUsers) {
-      setUsers(savedUsers);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-  }, [users]);
 
   const registerUser = () => {
-    if (!name || !email || !password) {
-      alert("Please fill all fields");
+
+    if (name.trim() === "") {
+      alert("Name field cannot be empty");
       return;
     }
 
-    const newUser = { name, email };
-    setUsers([...users, newUser]);
+    if (email.trim() === "") {
+      alert("Email field cannot be empty");
+      return;
+    }
 
-    setMessage("Registration Successful!");
+    if (password.trim() === "") {
+      alert("Password field cannot be empty");
+      return;
+    }
 
-    setName("");
-    setEmail("");
-    setPassword("");
+    alert("Registration Successful!");
   };
 
   return (
     <div className="container">
-      <h2>Registration Form</h2>
+
+      <h1>Registration Form</h1>
 
       <input
         type="text"
@@ -45,12 +38,16 @@ function App() {
         onChange={(e) => setName(e.target.value)}
       />
 
+      <br /><br />
+
       <input
         type="email"
         placeholder="Enter Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+
+      <br /><br />
 
       <input
         type="password"
@@ -59,20 +56,20 @@ function App() {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={registerUser}>Register</button>
+      <br /><br />
 
-      <p className="message">{message}</p>
+      <button onClick={registerUser}>
+        Register
+      </button>
 
-      <div className="users">
-        <h3>Registered Users</h3>
-        <ul>
-          {users.map((user, index) => (
-            <li key={index}>
-              {user.name} - {user.email}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <hr />
+
+      <h2>Entered Data</h2>
+
+      <p>Name: {name}</p>
+      <p>Email: {email}</p>
+      <p>Password: {password}</p>
+
     </div>
   );
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+</head>
+<body>
+    <h1 style="color:blue ; background-color: black;">Employer Management system</h1>
+    <div class="container">
+        <input style="color:blue ; background-color: black;" type="text" id="name" placeholder="employee name">
+        <input style="color:blue ; background-color: black;" type="text" id="salary" placeholder="employee salary"> 
+        <input style="color:blue ; background-color: black;" type="number" id="id" placeholder="employee id">
+        <input style="color:blue ; background-color: black;" type ="number" id="dept" placeholder="department" >
+  <div class="head">
+    <button style="color:blue ; background-color: green;" id="add">Add</button>
+    <button style="color:blue ; background-color: green;" id="show">Show</button>
+    <button style="color:blue ; background-color: green;" id="update">Update</button>
+    <button style="color:blue ; background-color: green;" id="delete">Delete</button>
+ <p>this is the heading javscript caan handle the data of the employee content. </p>
+</div>
+
+
+
+    
+  
+ 
+  
+  <script>
+const hed= document.getElementById("add");
+const del= document.getElementById("show")
+const show= document.getElementById("update")
+const upd= document.getElementById("delete")
+
+hed.addEventListener("click",()=>{
+    if(inp.value.trim()!==""){
+        hed.innerHTML=inp.value;
+    }
+    else{
+        alert("please enter the name.");
+    }
+    
+});
+
+
+
+  </script>
+
+    
+</body>
+</html>

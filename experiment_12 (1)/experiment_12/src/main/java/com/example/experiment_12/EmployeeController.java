@@ -1,44 +1,44 @@
 package com.example.experiment_12;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.experiment_12.Employee;
+import com.example.experiment_12.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/employees")
 public class EmployeeController {
 
-    @Autowired
-    EmployeeService service;
+    private final EmployeeService service;
 
-    // POST
-    @PostMapping("/employees")
-    public Employee addEmployee(@RequestBody Employee emp) {
-        return service.addEmployee(emp);
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
     }
 
-    // GET ALL
-    @GetMapping("/employees")
-    public List<Employee> getEmployees() {
-        return service.getEmployees();
+    @PostMapping
+    public Employee addEmployee(@RequestBody Employee employee) {
+        return service.addEmployee(employee);
     }
 
-    // GET BY ID
-    @GetMapping("/employees/{id}")
-    public Employee getEmployee(@PathVariable int id) {
+    @GetMapping
+    public List<Employee> getAllEmployees() {
+        return service.getAllEmployees();
+    }
+
+    @GetMapping("/{id}")
+    public Employee getEmployeeById(@PathVariable Long id) {
         return service.getEmployeeById(id);
     }
 
-    // UPDATE
-    @PutMapping("/employees")
-    public Employee updateEmployee(@RequestBody Employee emp) {
-        return service.updateEmployee(emp);
+    @PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+        return service.updateEmployee(id, employee);
     }
 
-    // DELETE
-    @DeleteMapping("/employees/{id}")
-    public String deleteEmployee(@PathVariable int id) {
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);
-        return "Employee Deleted Successfully";
+        return "Employee deleted successfully";
     }
 }

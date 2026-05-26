@@ -1,38 +1,45 @@
 package com.example.experiment_12;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.experiment_12.Employee;
+import com.example.experiment_12.EmployeeRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class EmployeeService {
 
-    @Autowired
-    EmployeeRepository repo;
+    private final EmployeeRepository repository;
 
-    // Add Employee
-    public Employee addEmployee(Employee emp) {
-        return repo.save(emp);
+    public EmployeeService(EmployeeRepository repository) {
+        this.repository = repository;
     }
 
-    // Get All Employees
-    public List<Employee> getEmployees() {
-        return repo.findAll();
+    public Employee addEmployee(Employee employee) {
+        return repository.save(employee);
     }
 
-    // Get Employee By ID
-    public Employee getEmployeeById(int id) {
-        return repo.findById(id).orElse(null);
+    public List<Employee> getAllEmployees() {
+        return repository.findAll();
     }
 
-    // Update Employee
-    public Employee updateEmployee(Employee emp) {
-        return repo.save(emp);
+    public Employee getEmployeeById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 
-    // Delete Employee
-    public void deleteEmployee(int id) {
-        repo.deleteById(id);
+    public Employee updateEmployee(Long id, Employee employee) {
+        Employee existing = repository.findById(id).orElse(null);
+
+        if (existing != null) {
+            existing.setName(employee.getName());
+            existing.setDepartment(employee.getDepartment());
+            existing.setSalary(employee.getSalary());
+            return repository.save(existing);
+        }
+
+        return null;
+    }
+
+    public void deleteEmployee(Long id) {
+        repository.deleteById(id);
     }
 }
